@@ -29,15 +29,15 @@ public class Juego extends Application {
 	public void start(Stage primaryStage) throws Exception {
 
 		numLabel = new Label();
-		numLabel.setText("Introduce un número del 0 al 100");
+		numLabel.setText("Introduce un nÃºmero del 0 al 100");
 
 		nombreText = new TextField();
-		nombreText.setPromptText("Introduce un número");
+		nombreText.setPromptText("Introduce un nÃºmero");
 
 		comprobarButton = new Button("Comprobar");
 		comprobarButton.setOnAction(this::onComprobarAction);
 		comprobarButton.setDefaultButton(true);
-		comprobarButton.setTooltip(new Tooltip("Saludar a la persona indicada en el cuadro de texto"));
+		comprobarButton.setTooltip(new Tooltip("Comprobar si el nÃºmero es correcto"));
 
 		root = new VBox();
 		root.setAlignment(Pos.CENTER);
@@ -46,14 +46,14 @@ public class Juego extends Application {
 		root.setSpacing(5);
 
 		info.setTitle("AdivinApp");
-		info.setHeaderText("¡Has ganado!");
+		info.setHeaderText("Â¡Has ganado!");
 
 		warning.setTitle("AdivinApp");
-		warning.setHeaderText("¡Has fallado!");
+		warning.setHeaderText("Â¡Has fallado!");
 
 		error.setTitle("AdivinApp");
 		error.setHeaderText("Error");
-		error.setContentText("El número introducido no es válido.");
+		error.setContentText("El nÃºmero introducido no es vÃ¡lido.");
 
 		Scene scene = new Scene(root, 320, 200);
 		primaryStage.setTitle("AdivinApp");
@@ -68,34 +68,22 @@ public class Juego extends Application {
 			if (numero > 100 || numero < 0) {
 				error.showAndWait();
 			} else {
+				contador++;
 				if (numero == random) {
-					contador++;
-					info.setContentText("Sólo has necesitado " + contador
+					info.setContentText("SÃ³lo has necesitado " + contador
 							+ " intentos.\n\nVuelve a jugar e intenta mejorar esa marca.");
 					info.showAndWait();
 					contador = 0;
 					random = (int) (Math.random() * 100);
-				}
-
-				else {
-					if (numero > random) {
-						warning.setContentText(
-								"El número a adivinar es menor que " + numero + ".\n\nVuelve a intentarlo.");
-						contador = contador + 1;
-						warning.showAndWait();
-					} else {
-						warning.setContentText(
-								"El número a adivinar es mayor que " + numero + ".\n\nVuelve a intentarlo.");
-						contador = contador + 1;
-						warning.showAndWait();
-					}
+				} else {
+					warning.setContentText("El nÃºmero a adivinar es " + (numero > random ? "menor" : "mayor") + " que "
+							+ numero + ".\n\nVuelve a intentarlo.");
+					warning.showAndWait();
 				}
 			}
-
 		} catch (NumberFormatException ex) {
 			error.showAndWait();
 		}
-
 	}
 
 	public static void main(String[] args) {

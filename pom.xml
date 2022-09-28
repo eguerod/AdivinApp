@@ -7,7 +7,7 @@
 	<properties>
 		<maven.compiler.target>15</maven.compiler.target>
 		<maven.compiler.source>15</maven.compiler.source>
-		<project.build.sourceEncoding>Windows-1252</project.build.sourceEncoding>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<exec.mainClass>adivina.Main</exec.mainClass>
 	</properties>
 
